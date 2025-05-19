@@ -279,16 +279,16 @@ val javadocJar by tasks.registering(Jar::class) {
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "sonatype"
-            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-        }
-    }
+		repositories {
+				maven {
+					name = "GitHubPackages"
+					url = uri("https://maven.pkg.github.com/EpicSquid/cognito-idp")
+					credentials {
+							username = System.getenv("GITHUB_PUBLISH_USERNAME")
+							password = System.getenv("GITHUB_PUBLISH_TOKEN")
+					}
+				}
+		}
 
     publications.withType<MavenPublication> {
         artifact(javadocJar.get())
@@ -321,13 +321,6 @@ publishing {
             }
         }
     }
-}
-
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
 }
 
 vault {
