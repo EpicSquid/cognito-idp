@@ -358,13 +358,6 @@ npmPublish {
     }
 }
 
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
-}
-
 vault {
     vaultAddress.set("https://dark-lord.liftric.io")
     if (System.getenv("CI") == null) {
