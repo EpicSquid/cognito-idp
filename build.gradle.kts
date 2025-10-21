@@ -325,38 +325,38 @@ publishing {
 
 val npmAccessKey: String? by project
 
-npmPublish {
-    organization.set("liftric")
-    access.set(PUBLIC)
-    readme.set(rootProject.file("README.md"))
-
-    packages {
-        named("js") {
-            packageName.set(project.name)
-            packageJson {
-                keywords.set(
-                    listOf(
-                        "kotlin",
-                        "cognito",
-                        "identity-provider",
-                        "liftric",
-                        "aws"
-                    )
-                )
-                license.set("MIT")
-                description.set("Lightweight AWS Cognito Identity Provider client.")
-                homepage.set("https://github.com/liftric/cognito-idp")
-            }
-        }
-    }
-
-    registries {
-        npmjs {
-            uri.set(uri("https://registry.npmjs.org"))
-            authToken.set(npmAccessKey)
-        }
-    }
-}
+//npmPublish {
+//    organization.set("liftric")
+//    access.set(PUBLIC)
+//    readme.set(rootProject.file("README.md"))
+//
+//    packages {
+//        named("js") {
+//            packageName.set(project.name)
+//            packageJson {
+//                keywords.set(
+//                    listOf(
+//                        "kotlin",
+//                        "cognito",
+//                        "identity-provider",
+//                        "liftric",
+//                        "aws"
+//                    )
+//                )
+//                license.set("MIT")
+//                description.set("Lightweight AWS Cognito Identity Provider client.")
+//                homepage.set("https://github.com/liftric/cognito-idp")
+//            }
+//        }
+//    }
+//
+//    registries {
+//        npmjs {
+//            uri.set(uri("https://registry.npmjs.org"))
+//            authToken.set(npmAccessKey)
+//        }
+//    }
+//}
 
 vault {
     vaultAddress.set("https://dark-lord.liftric.io")
