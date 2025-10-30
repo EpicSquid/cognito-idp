@@ -3,6 +3,8 @@
 import com.android.build.gradle.LibraryExtension
 import com.liftric.vault.GetVaultSecretTask
 import com.vanniktech.maven.publish.KotlinMultiplatform
+import org.apache.tools.ant.taskdefs.optional.jsp.JspNameMangler.keywords
+import org.gradle.declarative.dsl.schema.FqName.Empty.packageName
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -23,40 +25,40 @@ val actualVersion = with(versioning.info) {
     if (branch == "HEAD" && dirty.not()) tag else full
 }
 
-mavenPublishing {
-    publishToMavenCentral()
-    signAllPublications()
-    configure(
-        KotlinMultiplatform(
-            sourcesJar = true,
-            androidVariantsToPublish = listOf("debug", "release"),
-        )
-    )
-
-    coordinates("com.liftric", "cognito-idp", actualVersion)
-    pom {
-        name.set(project.name)
-        description.set("Lightweight AWS Cognito Identity Provider client for Kotlin Multiplatform projects.")
-        url.set("https://github.com/liftric/cognito-idp")
-
-        licenses {
-            license {
-                name.set("MIT")
-                url.set("https://github.com/liftric/cognito-idp/blob/master/LICENSE")
-            }
-        }
-        developers {
-            developer {
-                id.set("liftric")
-                name.set("Liftric GmbH")
-                email.set("team@liftric.com")
-            }
-        }
-        scm {
-            url.set("https://github.com/liftric/cognito-idp")
-        }
-    }
-}
+//mavenPublishing {
+//    publishToMavenCentral()
+//    signAllPublications()
+//    configure(
+//        KotlinMultiplatform(
+//            sourcesJar = true,
+//            androidVariantsToPublish = listOf("debug", "release"),
+//        )
+//    )
+//
+//    coordinates("com.liftric", "cognito-idp", actualVersion)
+//    pom {
+//        name.set(project.name)
+//        description.set("Lightweight AWS Cognito Identity Provider client for Kotlin Multiplatform projects.")
+//        url.set("https://github.com/liftric/cognito-idp")
+//
+//        licenses {
+//            license {
+//                name.set("MIT")
+//                url.set("https://github.com/liftric/cognito-idp/blob/master/LICENSE")
+//            }
+//        }
+//        developers {
+//            developer {
+//                id.set("liftric")
+//                name.set("Liftric GmbH")
+//                email.set("team@liftric.com")
+//            }
+//        }
+//        scm {
+//            url.set("https://github.com/liftric/cognito-idp")
+//        }
+//    }
+//}
 
 repositories {
     mavenCentral()
@@ -378,34 +380,6 @@ val npmAccessKey: String? by project
 //        }
 //    }
 //}
-
-    packages {
-        named("js") {
-            packageName.set(project.name)
-            packageJson {
-                keywords.set(
-                    listOf(
-                        "kotlin",
-                        "cognito",
-                        "identity-provider",
-                        "liftric",
-                        "aws"
-                    )
-                )
-                license.set("MIT")
-                description.set("Lightweight AWS Cognito Identity Provider client.")
-                homepage.set("https://github.com/liftric/cognito-idp")
-            }
-        }
-    }
-
-    registries {
-        npmjs {
-            uri.set(uri("https://registry.npmjs.org"))
-            authToken.set(npmAccessKey)
-        }
-    }
-}
 
 vault {
     vaultAddress.set("https://dark-lord.liftric.io")
