@@ -314,7 +314,7 @@ publishing {
 		}
 
     publications.withType<MavenPublication> {
-        artifact(javadocJar.get())
+//        artifact(javadocJar.get())
 
         pom {
             name.set(project.name)
